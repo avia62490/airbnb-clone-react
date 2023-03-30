@@ -1,8 +1,9 @@
 import './App.css';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom'
-import SignUp from './SignUp'
+import {Link} from 'react-router-dom';
+import SignUp from './SignUp';
+import Property from './Property';
 
 function App() {
   const [properties, setProperties] = useState([])
@@ -50,6 +51,10 @@ function App() {
         <h2>{property.title}</h2>
         <h4>{property.address}</h4>
         <h4>{property.description}</h4>
+        <Link
+          to={`/properties/${property.id}`}
+          element={<Property />}
+        >More Info</Link>
         <hr/>
       </div>
     )

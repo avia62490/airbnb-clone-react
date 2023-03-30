@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import SignUp from './SignUp'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import SignUp from './SignUp';
+import Property from './Property';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,6 +15,7 @@ root.render(
           <Routes>
               <Route path="/" element={<App />} />
               <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/properties/:propertyId" element={<Property />} />
               
           </Routes>
       </BrowserRouter>
