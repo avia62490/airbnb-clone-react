@@ -5,13 +5,19 @@ import {Link} from 'react-router-dom';
 import SignUp from './SignUp';
 import Property from './Property';
 
+
 function App() {
   const [properties, setProperties] = useState([])
-  const [user, setUser] = useState(
-    {email: "",
+  const [user, setUser] = useState( {
+    email: "",
     password: ""
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState( {
+    email: "",
+    userName: "",
+    id: ""
+  });
+  
 
   useEffect(() => {
     axios.get("http://localhost:3000/properties")
@@ -40,7 +46,11 @@ function App() {
       axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
       localStorage.setItem("jwt", response.data.jwt);
       console.log(response.data);
-      setIsLoggedIn(true);
+      setCurrentUser( {
+        email: response.data.email,
+        userName: response.data.user_name,
+        id: response.data.id
+      });
     })
   };
 
@@ -88,7 +98,7 @@ function App() {
           Sign up here
         </Link>
         {/* Temporary placeholder, later displauy username when logged in */}
-        <h1>{isLoggedIn ? "User logged in" : "Nobody logged in"}</h1>
+        <h1>{currentUser.userName ? `${currentUser.userName} logged in` : "Nobody logged in"}</h1>
         <hr/>
         <hr/>
         {/* Properties to rent */}
